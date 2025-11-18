@@ -20,10 +20,12 @@ export class ScenarioPlayer {
     this.container.appendChild(header);
 
     const buttonsRow = el('div', 'scenario-buttons');
+    this.buttonRefs = new Map();
     Object.keys(this.scenarios).forEach((key) => {
       const button = el('button', 'scenario-button', this.labelForScenario(key));
       button.addEventListener('click', () => this.playScenario(key));
       buttonsRow.appendChild(button);
+      this.buttonRefs.set(key, button);
     });
     this.container.appendChild(buttonsRow);
 
@@ -41,6 +43,11 @@ export class ScenarioPlayer {
     const scenario = this.scenarios[key];
     if (!scenario) return;
     this.activeScenarioKey = key;
+    if (this.buttonRefs) {
+      this.buttonRefs.forEach((button, buttonKey) => {
+        button.classList.toggle('active', buttonKey === key);
+      });
+    }
     this.statusLabel.textContent = `Playing ${this.labelForScenario(key)} (${formatTimestamp(
       scenario.timestamp
     )})`;
@@ -55,7 +62,7 @@ export class ScenarioPlayer {
     this.details.innerHTML = '';
 
     if (scenario.vessel) {
-      const vesselCard = el('div', 'scenario-card');
+      const vesselCard = el('div', 'scenario-card highlight');
       vesselCard.appendChild(el('h3', 'panel-subtitle', scenario.vessel.name));
       vesselCard.appendChild(
         el(

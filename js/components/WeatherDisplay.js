@@ -10,11 +10,18 @@ export class WeatherDisplay {
     if (!this.container) return;
     this.container.innerHTML = '';
     const title = el('h1', 'weather-title', 'Port Weather & Limits');
+    const cluster = el('div', 'weather-cluster');
+    cluster.append(
+      this.weatherChip('Wind', `${constraints.wind_limit_knots} kn`),
+      this.weatherChip('Wave', `${constraints.wave_limit_m} m`),
+      this.weatherChip('Visibility', `${constraints.visibility_limit_nm} nm`)
+    );
+
     const list = el('ul', 'weather-list');
     list.append(
-      this.weatherItem('Wind Limit', `${constraints.wind_limit_knots} kn`),
-      this.weatherItem('Wave Limit', `${constraints.wave_limit_m} m`),
-      this.weatherItem('Visibility', `${constraints.visibility_limit_nm} nm`)
+      this.weatherItem('Wind Limit', `${constraints.wind_limit_knots} knots steady`),
+      this.weatherItem('Wave Limit', `${constraints.wave_limit_m} m significant`),
+      this.weatherItem('Visibility', `${constraints.visibility_limit_nm} nm minimum`)
     );
 
     const now = new Date();
@@ -23,12 +30,18 @@ export class WeatherDisplay {
       'weather-meta',
       `Updated ${now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}`
     );
-    this.container.append(title, list, meta);
+    this.container.append(title, cluster, list, meta);
   }
 
   weatherItem(label, value) {
     const item = el('li', 'weather-item');
     item.append(el('span', 'weather-label', label), el('span', 'weather-value', value));
     return item;
+  }
+
+  weatherChip(label, value) {
+    const chip = el('div', 'weather-chip');
+    chip.textContent = `${label}: ${value}`;
+    return chip;
   }
 }

@@ -100,6 +100,7 @@ const clock = new THREE.Clock();
 function animate() {
   requestAnimationFrame(animate);
   const delta = clock.getDelta();
+  portMap.update(delta);
   vesselTracker.update(delta);
   controls.update();
   updateTooltip();
