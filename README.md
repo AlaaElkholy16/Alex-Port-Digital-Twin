@@ -47,14 +47,12 @@ A lightweight Three.js experience that visualizes the Port of Alexandria with GI
 In a terminal, serve the project root with your favorite static server and open the printed URL.
 
 ```powershell
-cd d:\CSIT\Graduation\DT-demo
 npx --yes http-server -c-1
 ```
 
 Or, using Python 3:
 
 ```powershell
-cd d:\CSIT\Graduation\DT-demo
 python -m http.server 8080
 ```
 
