@@ -37,6 +37,8 @@ A lightweight Three.js experience that visualizes the Port of Alexandria with GI
     └── textures/
 ```
 
+> **Note:** `assets/models` and `assets/textures` include placeholder README files so the folders stay versioned. Drop your actual GLB/GLTF meshes and texture maps into those directories when you're ready to upgrade the visual fidelity.
+
 ## Prerequisites
 
 - Node.js 16+ (for running a local dev server with `npx`)
