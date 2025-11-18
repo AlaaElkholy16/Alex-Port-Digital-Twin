@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Port of Alexandria Digital Twin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <header id="weather-panel"></header>
+      <main>
+        <section id="scene-container" aria-label="3D Port Visualization"></section>
+        <aside id="kpi-panel" aria-label="Key Performance Indicators"></aside>
+      </main>
+      <section id="scenario-panel" aria-label="Scenario Controls"></section>
+    </div>
+    <div id="tooltip" class="hidden" role="tooltip" aria-label="Port information tooltip"></div>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
