@@ -1,5 +1,12 @@
 # Port of Alexandria Digital Twin Demo
 
+flowchart LR
+    A[GIS Base Map<br>Port Layout] --> D[Digital Twin Platform]
+    B[AIS Data<br>Vessel Tracks] --> D
+    C[KPI Data<br>Performance Metrics] --> D
+    D --> E[3D Visualization<br>Three.js]
+    D --> F[Scenario Simulation<br>Operational Planning]
+    
 A lightweight Three.js experience that visualizes the Port of Alexandria with GIS geometry, AIS activity, KPI dashboards, weather limits, and interactive scenario playback.
 
 ## Features
