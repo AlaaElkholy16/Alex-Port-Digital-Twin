@@ -114,6 +114,40 @@ The KPIs that ship with this repo are placeholders—use the feeds above to prod
 3. **Compute KPIs** — Aggregate AIS timestamps, cargo manifests, or TOS exports into the `portKPIs` structure for dashboards and guardrails.
 4. **Simulate** — Blend GIS, AIS, and KPIs to render the Three.js scene, replay scenarios, and evaluate what-if congestion plans.
 
+### ⚙️ Live AIS refresh (MyShipTracking)
+
+The repo ships with `scripts/update-ais-data.js`, a lightweight Node.js helper that calls the MyShipTracking *Vessels in Port* endpoint and rewrites `js/data/ais-data.js` with the newest arrivals snapshot. Secrets live in `.env`, which is already ignored by Git—never commit your real credentials.
+
+#### 1. Configure credentials
+
+Copy the sample file and fill in the blanks provided by MyShipTracking support:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+| Variable | Required | Description |
+| :--- | :--- | :--- |
+| `MYSHIPTRACKING_API_KEY` | ✅ | API key assigned to your account |
+| `MYSHIPTRACKING_SECRET` | ✅ | Secret pair for the key above |
+| `MYSHIPTRACKING_PORT` | ⛵ | Port filter passed to the endpoint (defaults to Alexandria) |
+| `MYSHIPTRACKING_ENDPOINT` | 🔌 | Override if MyShipTracking publishes a new URL path |
+| `MYSHIPTRACKING_AUTH_MODE` | 🔐 | `query` (default) appends credentials to the URL; switch to `header` if your plan supports signing via headers |
+
+#### 2. Run the refresh script
+
+From the project root run the helper whenever you need a new feed (the script also reads the same env vars from your shell, so you can skip `.env` if you prefer):
+
+```powershell
+node scripts/update-ais-data.js
+```
+
+The tool logs progress, fetches the selected port, normalizes the JSON, and overwrites `js/data/ais-data.js` with a fresh `currentAISData` object that the Three.js app imports at runtime.
+
+#### 3. Automate (optional)
+
+Because the script is just Node, you can schedule it with Windows Task Scheduler, a cron job, or wrap it with `npx watch "node scripts/update-ais-data.js"` to poll every few minutes. Commit the generated `js/data/ais-data.js` if you want teammates to see the same snapshot, but never the `.env` file itself.
+
 ## Customization Tips
 
 - Tune coordinate scaling inside `buildCoordinateConverter` for higher fidelity
