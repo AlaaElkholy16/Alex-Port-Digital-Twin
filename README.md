@@ -72,7 +72,7 @@ All datasets live under `js/data` and can be swapped for live feeds:
 
 ![Digital twin workflow diagram showing GIS, AIS, KPI inputs feeding Three.js and scenario tools](./workflow_intial.svg)
 
-The Alexandria demo already ships with synthetic data, but the links below make it easy to swap in authoritative feeds when you are ready.
+The Alexandria demo already ships with synthetic data, but the links below make it easy to swap in authoritative feeds when it is ready.
 
 ### 🗺️ GIS datasets for port layouts
 
