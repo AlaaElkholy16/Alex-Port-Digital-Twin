@@ -37,7 +37,7 @@ A lightweight Three.js experience that visualizes the Port of Alexandria with GI
     └── textures/
 ```
 
-> **Note:** `assets/models` and `assets/textures` include placeholder README files so the folders stay versioned. Drop your actual GLB/GLTF meshes and texture maps into those directories when you're ready to upgrade the visual fidelity.
+> **Note:** `assets/models` and `assets/textures` include placeholder README files so the folders stay versioned. Will drop our actual GLB/GLTF meshes and texture maps into those directories when we're ready to upgrade the visual fidelity.
 
 ## Prerequisites
 
